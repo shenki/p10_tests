@@ -25,7 +25,7 @@ static void mma(void) {
 }
 
 static void prefix(void) {
-	printf("Smoke test prefix\n");
+	printf("Smoke test prefix (will sigill if not supported)\n");
 	test_prefix();
 }
 
