@@ -12,12 +12,16 @@ static void mma(void) {
 	uint16_t x[] = {1, 0, 2, 0, 3, 0, 4, 0};
 	uint16_t y[] = {1, 0, 2, 0, 3, 0, 4, 0};
 	uint32_t z[4*4];
+	uint32_t exp[4*4] = {1, 2, 3, 4,
+						 2, 4, 6, 8,
+						 3, 6, 9, 12,
+						 4, 8, 12, 16};
 
 	printf("Smoke test MMA\n");
 	test_mma(&x, &y, &z);
 
 	for(i = 0; i < 16; i++)
-		printf("MMA[%d] = %d\n", i, z[i]);
+		printf("MMA[%d] = %d (%s)\n", i, z[i], z[i] == exp[i] ? "Correct" : "Incorrect");
 }
 
 static void prefix(void) {
