@@ -41,7 +41,15 @@ static void hwcap(void) {
 int main(int argc, char *argv[]) {
 	char opt;
 
-	while ((opt = getopt(argc, argv, "mpl")) != 255) {
+	if (argc == 1) {
+		/*  Just run all the tests */
+		hwcap();
+		mma();
+		prefix();
+		return 0;
+	}
+
+	while ((opt = getopt(argc, argv, "mpc")) != 255) {
 		switch (opt) {
 		case 'm':
 			mma();
