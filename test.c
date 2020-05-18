@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/auxv.h>
 
 extern void test_prefix(void);
 extern int test_mma(uint16_t (*)[8], uint16_t (*)[8], uint32_t (*)[4*4]);
@@ -24,6 +25,15 @@ static void prefix(void) {
 	test_prefix();
 }
 
+static void hwcap(void) {
+	unsigned long at_hwcap = getauxval(AT_HWCAP);
+	unsigned long at_hwcap2 = getauxval(AT_HWCAP2);
+
+	printf("HWCAP: 0x%08lx HWCAP2: 0x%08lx\n", at_hwcap, at_hwcap2);
+	printf("ISAv3.1: %s\n", at_hwcap2 & 0x00040000 ? "Yes" : "No");
+	printf("MMA: %s\n", at_hwcap2 & 0x00040000 ? "Yes" : "No");
+}
+
 int main(int argc, char *argv[]) {
 	char opt;
 
@@ -35,8 +45,8 @@ int main(int argc, char *argv[]) {
 		case 'p':
 			prefix();
 			break;
-		case 'l':
-			while(1);
+		case 'c':
+			hwcap();
 			break;
 		default:
 			fprintf(stderr, "Unknown option %c\n", opt);
