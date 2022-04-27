@@ -62,9 +62,10 @@ int main(int argc, char *argv[]) {
 			break;
 		default:
 			fprintf(stderr, "Unknown option %c\n", opt);
-			fprintf(stderr, "Usage: %s [-m] [-p]\n", argv[0]);
+			fprintf(stderr, "Usage: %s [-m] [-p] [-c]\n", argv[0]);
 			fprintf(stderr, "\t-p: smoke test prefix\n");
 			fprintf(stderr, "\t-m: smoke test mma\n");
+			fprintf(stderr, "\t-c: display hwcap\n");
 			exit(-1);
 			break;
 		}
