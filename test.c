@@ -35,7 +35,7 @@ static void hwcap(void) {
 
 	printf("HWCAP: 0x%08lx HWCAP2: 0x%08lx\n", at_hwcap, at_hwcap2);
 	printf("ISAv3.1: %s\n", at_hwcap2 & 0x00040000 ? "Yes" : "No");
-	printf("MMA: %s\n", at_hwcap2 & 0x00040000 ? "Yes" : "No");
+	printf("MMA: %s\n", at_hwcap2 & 0x00020000 ? "Yes" : "No");
 }
 
 int main(int argc, char *argv[]) {
